@@ -5,7 +5,7 @@ using DemoLibrary;
 //var cal = new Calculadora();
 Console.WriteLine("Suma: " + Calculadora.sumar(5, 9));
 Console.WriteLine("Resta: " + Calculadora.restar(5, 9));
-//Console.WriteLine("Multipliación: " + Calculadora.multipliacion(5, 9));
+Console.WriteLine("Multipliación: " + Calculadora.multipliacion(5, 9));
 Console.WriteLine("División: " + Calculadora.dividir(5, 9));
 
 

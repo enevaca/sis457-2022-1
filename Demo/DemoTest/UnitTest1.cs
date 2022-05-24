@@ -36,6 +36,21 @@ namespace DemoTest
         }
 
         [TestMethod]
+        public void TestMultiplacacion()
+        {
+            // Arrange
+            decimal numero1 = 10;
+            decimal numero2 = 5;
+
+            // Act
+            decimal resultado = Calculadora.multipliacion(numero1, numero2);
+
+            // Assert
+            decimal valorEsperado = 50;
+            Assert.AreEqual(valorEsperado, resultado);
+        }
+
+        [TestMethod]
         public void TestDivision()
         {
             // Arrange
