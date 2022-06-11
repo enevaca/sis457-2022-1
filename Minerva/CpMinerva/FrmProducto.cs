@@ -85,7 +85,7 @@ namespace CpMinerva
             DialogResult dialog = MessageBox.Show($"Está seguro que sea dar de baja el Producto con código {codigo}", "::: Mensaje - Minerva ::", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dialog == DialogResult.OK)
             {
-                ProductoCln.eliminar(id, "noel");
+                ProductoCln.eliminar(id, Util.usuario.usuario);
                 listar();
                 MessageBox.Show($"Producto dado de baja correctamente", "::: Mensaje - Minerva ::", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -115,7 +115,7 @@ namespace CpMinerva
             producto.unidadMedida = cbxUnidadMedida.Text;
             producto.saldo = nudSaldo.Value;
             producto.precioVenta = nudPrecioVenta.Value;
-            producto.usuarioRegistro = "noel";
+            producto.usuarioRegistro = Util.usuario.usuario;
             producto.fechaRegistro = DateTime.Now;
 
             if (esNuevo)
