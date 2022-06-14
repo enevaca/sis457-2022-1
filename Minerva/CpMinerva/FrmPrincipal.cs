@@ -28,5 +28,10 @@ namespace CpMinerva
         {
             frmAutenticacion.Visible = true;
         }
+
+        private void btnOpRegistrarCompra_Click(object sender, EventArgs e)
+        {
+            new FrmCompra().ShowDialog();
+        }
     }
 }

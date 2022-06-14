@@ -104,7 +104,46 @@ namespace CpMinerva
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
-            guardar();
+            if (validar())
+            {
+                guardar();
+            }
+        }
+
+        private bool validar()
+        {
+            bool esValido = true;
+            erpCodigo.SetError(txtCodigo, "");
+            erpDescripcion.SetError(txtDescripcion, "");
+            erpSaldo.SetError(nudSaldo, "");
+            erpPrecioVenta.SetError(nudPrecioVenta, "");
+
+            if (string.IsNullOrEmpty(txtCodigo.Text))
+            {
+                erpCodigo.SetError(txtCodigo, "El campo Código es obligatorio");
+                esValido = false;
+            }
+            if (string.IsNullOrEmpty(txtDescripcion.Text))
+            {
+                erpDescripcion.SetError(txtDescripcion, "El campo Descripción es obligatorio");
+                esValido = false;
+            }
+            if (string.IsNullOrEmpty(nudSaldo.Text))
+            {
+                erpSaldo.SetError(nudSaldo, "El campo Saldo es obligatorio");
+                esValido = false;
+            }
+            if (string.IsNullOrEmpty(nudPrecioVenta.Text))
+            {
+                erpPrecioVenta.SetError(nudPrecioVenta, "El campo Precio de Venta es obligatorio");
+                esValido = false;
+            }
+            if (nudPrecioVenta.Value <= 0)
+            {
+                erpPrecioVenta.SetError(nudPrecioVenta, "El campo Precio de Venta debe ser mayor a Cero");
+                esValido = false;
+            }
+            return esValido;
         }
 
         private void guardar()
@@ -144,6 +183,11 @@ namespace CpMinerva
             cbxUnidadMedida.Text = String.Empty;
             nudSaldo.Text = String.Empty;
             nudPrecioVenta.Text = String.Empty;
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Util.onlyLetters(sender, e);
         }
     }
 }

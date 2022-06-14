@@ -67,10 +67,10 @@
             this.c1Ribbon1.BottomToolBarHolder = this.ribbonBottomToolBar1;
             this.c1Ribbon1.ConfigToolBarHolder = this.ribbonConfigToolBar1;
             this.c1Ribbon1.Location = new System.Drawing.Point(0, 0);
-            this.c1Ribbon1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.c1Ribbon1.Margin = new System.Windows.Forms.Padding(4);
             this.c1Ribbon1.Name = "c1Ribbon1";
             this.c1Ribbon1.QatHolder = this.ribbonQat1;
-            this.c1Ribbon1.Size = new System.Drawing.Size(1200, 161);
+            this.c1Ribbon1.Size = new System.Drawing.Size(1200, 201);
             this.c1Ribbon1.Tabs.Add(this.ribbonTab1);
             this.c1Ribbon1.Tabs.Add(this.ribbonTab2);
             this.c1Ribbon1.Tabs.Add(this.ribbonTab3);
@@ -154,6 +154,7 @@
             this.btnOpRegistrarCompra.Name = "btnOpRegistrarCompra";
             this.btnOpRegistrarCompra.Text = "Registrar Compras";
             this.btnOpRegistrarCompra.ToolTip = "Registrar Compras";
+            this.btnOpRegistrarCompra.Click += new System.EventHandler(this.btnOpRegistrarCompra_Click);
             // 
             // btnOpRegistrarVenta
             // 
@@ -251,10 +252,10 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::CpMinerva.Properties.Resources.principal;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 161);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 201);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1200, 393);
+            this.pictureBox1.Size = new System.Drawing.Size(1200, 353);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -269,7 +270,7 @@
             this.Controls.Add(this.c1Ribbon1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "::: Principal - Minerva :::";
