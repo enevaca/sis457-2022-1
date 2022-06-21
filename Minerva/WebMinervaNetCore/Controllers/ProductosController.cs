@@ -21,9 +21,9 @@ namespace WebMinervaNetCore.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-              return _context.Productos != null ? 
-                          View(await _context.Productos.ToListAsync()) :
-                          Problem("Entity set 'MinervaContext.Productos'  is null.");
+            return _context.Productos != null ?
+              View(await _context.Productos.Where(x => x.RegistroActivo == true).ToListAsync()) :
+              Problem("Entity set 'MinervaContext.Productos'  is null.");
         }
 
         // GET: Productos/Details/5
@@ -147,16 +147,17 @@ namespace WebMinervaNetCore.Controllers
             var producto = await _context.Productos.FindAsync(id);
             if (producto != null)
             {
-                _context.Productos.Remove(producto);
+                producto.RegistroActivo = false;
+                //_context.Productos.Remove(producto);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductoExists(int id)
         {
-          return (_context.Productos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Productos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
