@@ -31,6 +31,16 @@ namespace ClnMinerva
             }
         }
 
+        public static int cambiarClave(int id, string clave)
+        {
+            using (var contexto = new MinervaEntities())
+            {
+                var existente = contexto.Usuario.Find(id);
+                existente.clave = clave;
+                return contexto.SaveChanges();
+            }
+        }
+
         public static int eliminar(int id, string usuario)
         {
             using (var contexto = new MinervaEntities())
