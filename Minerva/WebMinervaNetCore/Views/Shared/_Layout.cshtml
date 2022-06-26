@@ -50,19 +50,30 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Inicio</a>
                 <a asp-controller="Home" asp-action="Privacy" class="nav-item nav-link">Privacidad</a>
-                <a href="#" class="nav-item nav-link">Compras</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Catálogos</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a asp-controller="Productos" asp-action="Index" class="dropdown-item">Productos</a>
-                        <a asp-controller="Empleados" asp-action="Index" class="dropdown-item">Empleados</a>
-                        <a href="#" class="dropdown-item">Proveedores</a>
-                        <a href="#" class="dropdown-item">Clientes</a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a href="#" class="nav-item nav-link">Compras</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Catálogos</a>
+                        <div class="dropdown-menu fade-down m-0">
+                            <a asp-controller="Productos" asp-action="Index" class="dropdown-item">Productos</a>
+                            <a asp-controller="Empleados" asp-action="Index" class="dropdown-item">Empleados</a>
+                            <a href="#" class="dropdown-item">Proveedores</a>
+                            <a href="#" class="dropdown-item">Clientes</a>
+                        </div>
                     </div>
-                </div>
+                }
                 <a href="contact.html" class="nav-item nav-link">Contacto</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            @if (User.Identity?.IsAuthenticated == false)
+            {
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Iniciar Sesión<i class="fa fa-arrow-right ms-3"></i></a>
+            }
+            else
+            {
+                <a href="#" class="nav-item nav-link">Hola @User.Identity?.Name</a>
+                @await Html.PartialAsync("_LogoutPartial");
+            }
         </div>
     </nav>
     <!-- Navbar End -->

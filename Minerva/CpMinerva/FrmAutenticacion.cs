@@ -39,6 +39,7 @@ namespace CpMinerva
             //usuario.fechaRegistro = DateTime.Now;
             //usuario.registroActivo = true;
             //UsuarioCln.insertar(usuario);
+            //UsuarioCln.cambiarClave(1, Util.Encrypt("123456"));
         }
 
         private bool validar() 

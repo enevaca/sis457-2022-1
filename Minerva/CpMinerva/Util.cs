@@ -15,27 +15,27 @@ namespace CpMinerva
     {
         public static Usuario usuario;
 		public static bool notPaste = true;
-        public static string Encrypt(string text)
-        {
-            string Password = "SIS457-1nf0!";
-            byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(text);
-            PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, new byte[] { 0x0, 0x1, 0x2, 0x1C, 0x1D, 0x1E, 0x3, 0x4, 0x5, 0xF, 0x20, 0x21, 0xAD, 0xAF, 0xA4 });
-            byte[] encryptedData = Encrypt(clearBytes, pdb.GetBytes(32), pdb.GetBytes(16)); // 256 Bits
-            return Convert.ToBase64String(encryptedData);
-        }
-
-        private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV)
-        {
-            MemoryStream ms = new MemoryStream();
-            Rijndael alg = Rijndael.Create();
-            alg.Key = Key;
-            alg.IV = IV;
-            CryptoStream cs = new CryptoStream(ms, alg.CreateEncryptor(), CryptoStreamMode.Write);
-            cs.Write(clearData, 0, clearData.Length);
-            cs.Close();
-            byte[] encryptedData = ms.ToArray();
-            return encryptedData;
-        }
+		public static string Encrypt(string clearText)
+		{
+			string EncryptionKey = "SIS457-1nf0!";
+			byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+			using (Aes encryptor = Aes.Create())
+			{
+				Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+				encryptor.Key = pdb.GetBytes(32);
+				encryptor.IV = pdb.GetBytes(16);
+				using (MemoryStream ms = new MemoryStream())
+				{
+					using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+					{
+						cs.Write(clearBytes, 0, clearBytes.Length);
+						cs.Close();
+					}
+					clearText = Convert.ToBase64String(ms.ToArray());
+				}
+			}
+			return clearText;
+		}
 
 		/// <summary>
 		/// Validar sólo números en el evento KeyPress
